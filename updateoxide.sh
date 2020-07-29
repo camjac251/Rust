@@ -1,5 +1,4 @@
 #!/bin/bash
-
 oxideVersionLatest=$(curl -s 'https://umod.org/games/rust/latest.json' | python3 -c "import sys, json; print(json.load(sys.stdin)['version'])")
 oxideLatestURL=$(curl -s 'https://umod.org/games/rust/latest.json' | python3 -c "import sys, json; print(json.load(sys.stdin)['snapshot_url'])")
 oxideVersionInstalled=$(cat oxide.version)
