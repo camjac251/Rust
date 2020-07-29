@@ -1,11 +1,4 @@
 #!/bin/bash
-# First time, run: sudo apt -y install curl python3 unzip
-
-# Edit Below this line
-# Server & steamcmd root paths. Don't use trailing slashes "/"
-serverPath="/home/rustserver/serverfiles"
-steamcmdPath="/usr/games"
-# Edit above this line
 
 oxideVersionLatest=$(curl -s 'https://umod.org/games/rust/latest.json' | python3 -c "import sys, json; print(json.load(sys.stdin)['version'])")
 oxideLatestURL=$(curl -s 'https://umod.org/games/rust/latest.json' | python3 -c "import sys, json; print(json.load(sys.stdin)['snapshot_url'])")
