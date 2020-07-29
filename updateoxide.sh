@@ -5,7 +5,7 @@ oxideVersionInstalled=$(cat oxide.version)
 echo "Checking for oxide updates"
 if [ "$oxideVersionLatest" != "$oxideVersionInstalled" ] || [ -z "$oxideVersionInstalled" ]
 then
-    echo "New Oxide Update Found. Version ["$oxideVersionLatest"]"
+    echo "Newer Oxide update found. Version ["$oxideVersionLatest"]"
     echo "$oxideVersionLatest" > oxide.version
     echo "Updating Oxide"
     curl -L "$oxideLatestURL" --output oxide.zip >/dev/null 2>&1
@@ -13,5 +13,5 @@ then
     rm oxide.zip >/dev/null 2>&1
     echo "Oxide has been updated"
 else
-    echo "No update is available"
+    echo "No Oxide update detected"
 fi
