@@ -10,18 +10,16 @@ steamcmdPath="/usr/games"
 oxideVersionLatest=$(curl -s 'https://umod.org/games/rust/latest.json' | python3 -c "import sys, json; print(json.load(sys.stdin)['version'])")
 oxideLatestURL=$(curl -s 'https://umod.org/games/rust/latest.json' | python3 -c "import sys, json; print(json.load(sys.stdin)['snapshot_url'])")
 oxideVersionInstalled=$(cat oxide.version)
-echo "Checking for a new oxide version..."
+echo "Checking for oxide updates"
 if [ "$oxideVersionLatest" != "$oxideVersionInstalled" ] || [ -z "$oxideVersionInstalled" ]
 then
-    echo "Writing new version ["$oxideVersionLatest"] to file..."
+    echo "New Oxide Update Found. Version ["$oxideVersionLatest"]"
     echo "$oxideVersionLatest" > oxide.version
-    echo "New version written successfully. Updating server..."
-    "$steamcmdPath"/steamcmd +login anonymous +force_install_dir "$serverPath"/ +app_update 258550 +quit >/dev/null 2>&1
-    echo "Updating Oxide..."
+    echo "Updating Oxide"
     curl -L "$oxideLatestURL" --output oxide.zip >/dev/null 2>&1
-    unzip -o oxide.zip -d "$serverPath"/ >/dev/null 2>&1
+    unzip -o oxide.zip -d /home/container/ >/dev/null 2>&1
     rm oxide.zip >/dev/null 2>&1
-    echo "All operations completed successfully!"
+    echo "Oxide has been updated"
 else
     echo "No update is available"
 fi
